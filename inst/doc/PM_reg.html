@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<meta name="author" content="Lu Mao (lmao@biostat.wisc.edu)" />
+
+
+<title>Proportional means regression analysis of weighted composite endpoint of recurrent event and death</title>
+
+<script src="data:application/javascript;base64,Ly8gUGFuZG9jIDIuOSBhZGRzIGF0dHJpYnV0ZXMgb24gYm90aCBoZWFkZXIgYW5kIGRpdi4gV2UgcmVtb3ZlIHRoZSBmb3JtZXIgKHRvCi8vIGJlIGNvbXBhdGlibGUgd2l0aCB0aGUgYmVoYXZpb3Igb2YgUGFuZG9jIDwgMi44KS4KZG9jdW1lbnQuYWRkRXZlbnRMaXN0ZW5lcignRE9NQ29udGVudExvYWRlZCcsIGZ1bmN0aW9uKGUpIHsKICB2YXIgaHMgPSBkb2N1bWVudC5xdWVyeVNlbGVjdG9yQWxsKCJkaXYuc2VjdGlvbltjbGFzcyo9J2xldmVsJ10gPiA6Zmlyc3QtY2hpbGQiKTsKICB2YXIgaSwgaCwgYTsKICBmb3IgKGkgPSAwOyBpIDwgaHMubGVuZ3RoOyBpKyspIHsKICAgIGggPSBoc1tpXTsKICAgIGlmICghL15oWzEtNl0kL2kudGVzdChoLnRhZ05hbWUpKSBjb250aW51ZTsgIC8vIGl0IHNob3VsZCBiZSBhIGhlYWRlciBoMS1oNgogICAgYSA9IGguYXR0cmlidXRlczsKICAgIHdoaWxlIChhLmxlbmd0aCA+IDApIGgucmVtb3ZlQXR0cmlidXRlKGFbMF0ubmFtZSk7CiAgfQp9KTsK"></script>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+
+<style type="text/css">
+  code {
+    white-space: pre;
+  }
+  .sourceCode {
+    overflow: visible;
+  }
+</style>
+<style type="text/css" data-origin="pandoc">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+
+</style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    for (var j = 0; j < rules.length; j++) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") continue;
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' && rule.style.backgroundColor === '') continue;
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
+
+
+
+
+<link rel="stylesheet" href="data:text/css,body%20%7B%0Abackground%2Dcolor%3A%20%23fff%3B%0Amargin%3A%201em%20auto%3B%0Amax%2Dwidth%3A%20700px%3B%0Aoverflow%3A%20visible%3B%0Apadding%2Dleft%3A%202em%3B%0Apadding%2Dright%3A%202em%3B%0Afont%2Dfamily%3A%20%22Open%20Sans%22%2C%20%22Helvetica%20Neue%22%2C%20Helvetica%2C%20Arial%2C%20sans%2Dserif%3B%0Afont%2Dsize%3A%2014px%3B%0Aline%2Dheight%3A%201%2E35%3B%0A%7D%0A%23TOC%20%7B%0Aclear%3A%20both%3B%0Amargin%3A%200%200%2010px%2010px%3B%0Apadding%3A%204px%3B%0Awidth%3A%20400px%3B%0Aborder%3A%201px%20solid%20%23CCCCCC%3B%0Aborder%2Dradius%3A%205px%3B%0Abackground%2Dcolor%3A%20%23f6f6f6%3B%0Afont%2Dsize%3A%2013px%3B%0Aline%2Dheight%3A%201%2E3%3B%0A%7D%0A%23TOC%20%2Etoctitle%20%7B%0Afont%2Dweight%3A%20bold%3B%0Afont%2Dsize%3A%2015px%3B%0Amargin%2Dleft%3A%205px%3B%0A%7D%0A%23TOC%20ul%20%7B%0Apadding%2Dleft%3A%2040px%3B%0Amargin%2Dleft%3A%20%2D1%2E5em%3B%0Amargin%2Dtop%3A%205px%3B%0Amargin%2Dbottom%3A%205px%3B%0A%7D%0A%23TOC%20ul%20ul%20%7B%0Amargin%2Dleft%3A%20%2D2em%3B%0A%7D%0A%23TOC%20li%20%7B%0Aline%2Dheight%3A%2016px%3B%0A%7D%0Atable%20%7B%0Amargin%3A%201em%20auto%3B%0Aborder%2Dwidth%3A%201px%3B%0Aborder%2Dcolor%3A%20%23DDDDDD%3B%0Aborder%2Dstyle%3A%20outset%3B%0Aborder%2Dcollapse%3A%20collapse%3B%0A%7D%0Atable%20th%20%7B%0Aborder%2Dwidth%3A%202px%3B%0Apadding%3A%205px%3B%0Aborder%2Dstyle%3A%20inset%3B%0A%7D%0Atable%20td%20%7B%0Aborder%2Dwidth%3A%201px%3B%0Aborder%2Dstyle%3A%20inset%3B%0Aline%2Dheight%3A%2018px%3B%0Apadding%3A%205px%205px%3B%0A%7D%0Atable%2C%20table%20th%2C%20table%20td%20%7B%0Aborder%2Dleft%2Dstyle%3A%20none%3B%0Aborder%2Dright%2Dstyle%3A%20none%3B%0A%7D%0Atable%20thead%2C%20table%20tr%2Eeven%20%7B%0Abackground%2Dcolor%3A%20%23f7f7f7%3B%0A%7D%0Ap%20%7B%0Amargin%3A%200%2E5em%200%3B%0A%7D%0Ablockquote%20%7B%0Abackground%2Dcolor%3A%20%23f6f6f6%3B%0Apadding%3A%200%2E25em%200%2E75em%3B%0A%7D%0Ahr%20%7B%0Aborder%2Dstyle%3A%20solid%3B%0Aborder%3A%20none%3B%0Aborder%2Dtop%3A%201px%20solid%20%23777%3B%0Amargin%3A%2028px%200%3B%0A%7D%0Adl%20%7B%0Amargin%2Dleft%3A%200%3B%0A%7D%0Adl%20dd%20%7B%0Amargin%2Dbottom%3A%2013px%3B%0Amargin%2Dleft%3A%2013px%3B%0A%7D%0Adl%20dt%20%7B%0Afont%2Dweight%3A%20bold%3B%0A%7D%0Aul%20%7B%0Amargin%2Dtop%3A%200%3B%0A%7D%0Aul%20li%20%7B%0Alist%2Dstyle%3A%20circle%20outside%3B%0A%7D%0Aul%20ul%20%7B%0Amargin%2Dbottom%3A%200%3B%0A%7D%0Apre%2C%20code%20%7B%0Abackground%2Dcolor%3A%20%23f7f7f7%3B%0Aborder%2Dradius%3A%203px%3B%0Acolor%3A%20%23333%3B%0Awhite%2Dspace%3A%20pre%2Dwrap%3B%20%0A%7D%0Apre%20%7B%0Aborder%2Dradius%3A%203px%3B%0Amargin%3A%205px%200px%2010px%200px%3B%0Apadding%3A%2010px%3B%0A%7D%0Apre%3Anot%28%5Bclass%5D%29%20%7B%0Abackground%2Dcolor%3A%20%23f7f7f7%3B%0A%7D%0Acode%20%7B%0Afont%2Dfamily%3A%20Consolas%2C%20Monaco%2C%20%27Courier%20New%27%2C%20monospace%3B%0Afont%2Dsize%3A%2085%25%3B%0A%7D%0Ap%20%3E%20code%2C%20li%20%3E%20code%20%7B%0Apadding%3A%202px%200px%3B%0A%7D%0Adiv%2Efigure%20%7B%0Atext%2Dalign%3A%20center%3B%0A%7D%0Aimg%20%7B%0Abackground%2Dcolor%3A%20%23FFFFFF%3B%0Apadding%3A%202px%3B%0Aborder%3A%201px%20solid%20%23DDDDDD%3B%0Aborder%2Dradius%3A%203px%3B%0Aborder%3A%201px%20solid%20%23CCCCCC%3B%0Amargin%3A%200%205px%3B%0A%7D%0Ah1%20%7B%0Amargin%2Dtop%3A%200%3B%0Afont%2Dsize%3A%2035px%3B%0Aline%2Dheight%3A%2040px%3B%0A%7D%0Ah2%20%7B%0Aborder%2Dbottom%3A%204px%20solid%20%23f7f7f7%3B%0Apadding%2Dtop%3A%2010px%3B%0Apadding%2Dbottom%3A%202px%3B%0Afont%2Dsize%3A%20145%25%3B%0A%7D%0Ah3%20%7B%0Aborder%2Dbottom%3A%202px%20solid%20%23f7f7f7%3B%0Apadding%2Dtop%3A%2010px%3B%0Afont%2Dsize%3A%20120%25%3B%0A%7D%0Ah4%20%7B%0Aborder%2Dbottom%3A%201px%20solid%20%23f7f7f7%3B%0Amargin%2Dleft%3A%208px%3B%0Afont%2Dsize%3A%20105%25%3B%0A%7D%0Ah5%2C%20h6%20%7B%0Aborder%2Dbottom%3A%201px%20solid%20%23ccc%3B%0Afont%2Dsize%3A%20105%25%3B%0A%7D%0Aa%20%7B%0Acolor%3A%20%230033dd%3B%0Atext%2Ddecoration%3A%20none%3B%0A%7D%0Aa%3Ahover%20%7B%0Acolor%3A%20%236666ff%3B%20%7D%0Aa%3Avisited%20%7B%0Acolor%3A%20%23800080%3B%20%7D%0Aa%3Avisited%3Ahover%20%7B%0Acolor%3A%20%23BB00BB%3B%20%7D%0Aa%5Bhref%5E%3D%22http%3A%22%5D%20%7B%0Atext%2Ddecoration%3A%20underline%3B%20%7D%0Aa%5Bhref%5E%3D%22https%3A%22%5D%20%7B%0Atext%2Ddecoration%3A%20underline%3B%20%7D%0A%0Acode%20%3E%20span%2Ekw%20%7B%20color%3A%20%23555%3B%20font%2Dweight%3A%20bold%3B%20%7D%20%0Acode%20%3E%20span%2Edt%20%7B%20color%3A%20%23902000%3B%20%7D%20%0Acode%20%3E%20span%2Edv%20%7B%20color%3A%20%2340a070%3B%20%7D%20%0Acode%20%3E%20span%2Ebn%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Efl%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Ech%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Est%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Eco%20%7B%20color%3A%20%23888888%3B%20font%2Dstyle%3A%20italic%3B%20%7D%20%0Acode%20%3E%20span%2Eot%20%7B%20color%3A%20%23007020%3B%20%7D%20%0Acode%20%3E%20span%2Eal%20%7B%20color%3A%20%23ff0000%3B%20font%2Dweight%3A%20bold%3B%20%7D%20%0Acode%20%3E%20span%2Efu%20%7B%20color%3A%20%23900%3B%20font%2Dweight%3A%20bold%3B%20%7D%20%0Acode%20%3E%20span%2Eer%20%7B%20color%3A%20%23a61717%3B%20background%2Dcolor%3A%20%23e3d2d2%3B%20%7D%20%0A" type="text/css" />
+
+
+
+
+</head>
+
+<body>
+
+
+
+
+<h1 class="title toc-ignore">Proportional means regression analysis of weighted composite endpoint of recurrent event and death</h1>
+<h4 class="author">Lu Mao (<a href="mailto:lmao@biostat.wisc.edu" class="email">lmao@biostat.wisc.edu</a>)</h4>
+
+
+
+<div id="introduction" class="section level2">
+<h2>INTRODUCTION</h2>
+<p>This vignette demonstrates the use of the <code>Wcompo</code> package in the proportional means regression of weighted composite endpoint of recurrent hospitalizations and death (Mao and Lin, 2016, <em>Biostatistics</em>).</p>
+<div id="data" class="section level3">
+<h3>Data</h3>
+<p>Let <span class="math inline">\(D\)</span> denote the survival time and write <span class="math inline">\(N_D(t)=I(D\leq t)\)</span>. Let <span class="math inline">\(N_1(t),\ldots, N_{K-1}(t)\)</span> denote the counting processes for <span class="math inline">\(K-1\)</span> different types of possibly recurrent nonfatal event. We are interested in a weighted composite event process of the form <span class="math display">\[\begin{equation}
+\mathcal R(t)=\sum_{k=1}^{K-1} w_kN_k(t)+w_DN_D(t),
+\end{equation}\]</span> where <span class="math inline">\(w_1,\ldots, w_K\)</span> and <span class="math inline">\(w_D\)</span> are prespecified weights. To reflect the greater importance of death, we typically set <span class="math inline">\(w_D&gt;w_k\)</span> <span class="math inline">\((k=1,\ldots, K-1)\)</span>.</p>
+</div>
+<div id="model-specification" class="section level3">
+<h3>Model specification</h3>
+<p>Let <span class="math inline">\(\boldsymbol Z\)</span> denote a vector of baseline covariates. We model the conditional mean of <span class="math inline">\(\mathcal R(t)\)</span> given <span class="math inline">\(\boldsymbol Z\)</span> by <span class="math display">\[\begin{equation}\tag{1}
+E\{\mathcal R(t)\mid\boldsymbol Z\}=\exp(\boldsymbol\beta^{\rm T}\boldsymbol Z)\mu_0(t),
+\end{equation}\]</span> where <span class="math inline">\(\boldsymbol\beta\)</span> is a vector of regression coefficients and <span class="math inline">\(\mu_0(t)\)</span> is a nonparametric baseline mean function. We call model (1) the proportional means (PM) model because it implies that the conditional mean ratio between any two covariate groups is proportional over time, i.e., <span class="math display">\[\frac{E\{\mathcal R(t)\mid\boldsymbol Z_i\}}{E\{\mathcal R(t)\mid\boldsymbol Z_j\}}
+=\exp\{\beta^{\rm T}(\boldsymbol Z_i-\boldsymbol Z_j)\}.\]</span> This also means that the components of <span class="math inline">\(\boldsymbol\beta\)</span> can be interpreted as the log-mean ratios associated with unit increases in the corresponding covariates. With censored data, <span class="math inline">\(\boldsymbol\beta\)</span> can be estimated using the inverse probability censoring weighting (IPCW) technique.</p>
+</div>
+</div>
+<div id="basic-syntax" class="section level2">
+<h2>BASIC SYNTAX</h2>
+<p>The basic function to fit the PM model is <code>CompoML()</code>. To use the function, the input data must be in the “long” format. Specifically, we need an <code>id</code> variable containing the unique patient identifiers, a <code>time</code> variable containing the event times, a <code>status</code> variable labeling the event type (<code>1</code> for death, <code>2, ..., K</code> for nonfatal event types <span class="math inline">\(1,\ldots, K-1\)</span>, and <code>0</code> for censoring), and a covariate matrix <code>Z</code>. To fit an unweighted PM model (i.e., <span class="math inline">\(w_D=w_1=\cdots=w_{K-1}=1\)</span>), run the function in the default mode</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>obj <span class="ot">&lt;-</span> <span class="fu">CompoML</span>(id,time,status,Z)</span></code></pre></div>
+<p>To weight the components differently, use an optional argument <code>w</code> to specify the <span class="math inline">\(K\)</span>-vector of weights <span class="math inline">\((w_D,w_1,\ldots, w_{K-1})^{\rm T}\)</span>. Among the output of the <code>CompoML()</code> function are <code>beta</code>, the estimated <span class="math inline">\(\boldsymbol\beta\)</span>, and <code>var</code>, its estimated covariance matrix. For a summary of analysis results, simply print the returned object. To predict the model-based mean function for a new covariate <code>z</code>, use</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(obj, z)</span></code></pre></div>
+<div id="a-data-example" class="section level3">
+<h3>A DATA EXAMPLE</h3>
+<p>Heart Failure: A Controlled Trial Investigating Outcomes of Exercise Training (HF-ACTION) was a randomized controlled clinical trial to evaluate the efficacy and safety of exercise training among patients with heart failure (O’Connor and others, 2009). A total of 2331 medically stable outpatients with heart failure and reduced ejection fraction were recruited between April 2003 and February 2007 at 82 centers in the USA, Canada, and France. Patients were randomly assigned to usual care alone or usual care plus aerobic exercise training that consists of 36 supervised sessions followed by home-based training. The usual care group consisted of 1172 patients (follow-up data not available for 1 patient), and the exercise training group consisted of 1159 patients. There were a large number of hospital admissions (nonfatal event) and a considerable number of deaths in each treatment arm.</p>
+<p>To illustrate the PM model, we analyze a mock dataset <code>hfmock</code> consisting of 963 patients, 461 in exercise training and the remaining 502 in usual care. This dataset is contained in the <code>Wcompo</code> package.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="do">## load the package and data</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(Wcompo)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(hfmock)</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(hfmock)</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    id time status Training HF.etiology</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4   3 22.8      0        0           0</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 8   5 12.9      0        0           1</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 9   6  3.6      0        0           0</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 10  7 13.5      0        0           0</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 12  9 10.8      0        0           0</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 19 12 13.2      0        0           1</span></span></code></pre></div>
+<p>The variables <code>id</code>, <code>time</code> (in units of months), and <code>status</code> (2: hospitalization, 1: death) are already in the required forms for <code>CompoML()</code>. The binary variables <code>Training</code> and <code>HF.etiology</code> are indicators for exercise training vs usual care and for ischemic vs non-ischemic patients, respectively. We fit a PM model to the composite of recurrent hospitalizations and death weighted by <span class="math inline">\(1:2\)</span> against the treatment and etiology indicators:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="do">## fit a weighted PM (w_D=2, w_1=1)</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>obj <span class="ot">&lt;-</span> <span class="fu">CompoML</span>(hfmock<span class="sc">$</span>id,hfmock<span class="sc">$</span>time,hfmock<span class="sc">$</span>status,hfmock[,<span class="fu">c</span>(<span class="st">&quot;Training&quot;</span>,<span class="st">&quot;HF.etiology&quot;</span>)],</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>               <span class="at">w=</span><span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">1</span>))</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="do">## print out the result</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>obj</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Call:</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; CompoML(id = hfmock$id, time = hfmock$time, status = hfmock$status, </span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     Z = hfmock[, c(&quot;Training&quot;, &quot;HF.etiology&quot;)], w = c(2, 1))</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Proportional means regression models for composite endpoint</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  (Mao and Lin, 2016, Biostatistics):</span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;        Event 1 (Death) Event 2</span></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Weight               2       1</span></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Newton-Raphson algorithm converges in 3 iterations.</span></span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Estimates for Regression parameters:</span></span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;              Estimate        se z.value   p.value    </span></span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Training    -0.524155  0.092301 -5.6788 1.357e-08 ***</span></span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; HF.etiology  0.048341  0.077053  0.6274    0.5304    </span></span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ---</span></span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</span></span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Point and interval estimates for the mean ratios:</span></span>
+<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;             Mean Ratio 95% lower CL 95% higher CL</span></span>
+<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Training     0.5920555    0.4940786     0.7094614</span></span>
+<span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; HF.etiology  1.0495286    0.9024160     1.2206235</span></span></code></pre></div>
+<p>The above output shows that adding exercise training reduces the average number of composite events, with death counted twice as much as hospitalization, by 1-0.592=40.8% compared to usual care lone. This effect is highly significant (<span class="math inline">\(p\)</span>-value <span class="math inline">\(1.357e-08\)</span>). To display the differences visually, we plot the model-based mean functions by treatment for each etiology.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>oldpar <span class="ot">&lt;-</span> <span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">par</span>(<span class="st">&quot;mfrow&quot;</span>))</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>))</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="do">## plot the estimated mean function for</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="do">## non-ischemic patients by treatment</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(obj,<span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">0</span>),<span class="at">ylim=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="fl">1.5</span>),<span class="at">xlim=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">50</span>),</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>     <span class="at">main=</span><span class="st">&quot;Non-ischemic&quot;</span>,</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab=</span><span class="st">&quot;Time (months)&quot;</span>,<span class="at">cex.main=</span><span class="fl">1.2</span>,<span class="at">lwd=</span><span class="dv">2</span>)</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(obj,<span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">0</span>),<span class="at">add=</span><span class="cn">TRUE</span>,<span class="at">cex.main=</span><span class="fl">1.2</span>,<span class="at">lwd=</span><span class="dv">2</span>,<span class="at">lty=</span><span class="dv">2</span>)</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">&quot;topleft&quot;</span>,<span class="at">lty=</span><span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>,<span class="at">lwd=</span><span class="dv">2</span>,<span class="fu">c</span>(<span class="st">&quot;Exercise training&quot;</span>,<span class="st">&quot;Usual care&quot;</span>))</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a><span class="do">## plot the estimated mean function for</span></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a><span class="do">## ischemic patients by treatment</span></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(obj,<span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">1</span>),<span class="at">ylim=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="fl">1.5</span>),<span class="at">xlim=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">50</span>),</span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>     <span class="at">main=</span><span class="st">&quot;Ischemic&quot;</span>,</span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab=</span><span class="st">&quot;Time (months)&quot;</span>,<span class="at">cex.main=</span><span class="fl">1.2</span>,<span class="at">lwd=</span><span class="dv">2</span>)</span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(obj,<span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>),<span class="at">add=</span><span class="cn">TRUE</span>,<span class="at">cex.main=</span><span class="fl">1.2</span>,<span class="at">lwd=</span><span class="dv">2</span>,<span class="at">lty=</span><span class="dv">2</span>)</span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">&quot;topleft&quot;</span>,<span class="at">lty=</span><span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>,<span class="at">lwd=</span><span class="dv">2</span>,<span class="fu">c</span>(<span class="st">&quot;Exercise training&quot;</span>,<span class="st">&quot;Usual care&quot;</span>))</span></code></pre></div>
+<p><img src="data:image/png;base64,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" /><!-- --></p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(oldpar)</span></code></pre></div>
+<p>We can see that the mean function for exercise training is substantially lower than that for usual care in both ischemic and non-ischemic patients.</p>
+</div>
+</div>
+<div id="references" class="section level2">
+<h2>References</h2>
+<ul>
+<li>Mao, L. &amp; Lin, D. Y. (2016). Semiparametric regression for the weighted composite endpoint of recurrent and terminal events. <em>Biostatistics</em>, 172, 390–403.</li>
+</ul>
+</div>
+
+
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

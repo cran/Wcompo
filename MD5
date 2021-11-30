@@ -1,0 +1,15 @@
+744c065faa68bd1726c751133deab68c *DESCRIPTION
+23d5316fb8c70c899436e3c999c52107 *NAMESPACE
+a2d3cdee2f55a3b5d65398a5dc844bb0 *R/data.R
+869966a707b47875ccdf7d785658808c *R/functions.R
+165b2bd94acabd38384af77af48b38d0 *R/generic.R
+963c64c0712827fda0048e66cf4a3169 *build/vignette.rds
+14d36624be19739d04c8600a164aa8fd *data/hfmock.rda
+06d1fa0635e4ee17fb61655b1940731b *inst/doc/PM_reg.R
+213cfff9ca138a961cb21557a1e29367 *inst/doc/PM_reg.Rmd
+5462d04305db6291702de10e508ee888 *inst/doc/PM_reg.html
+171b3aaf0b5bd13de8debd9add942366 *man/CompoML.Rd
+07e83639051b9239c8a5aa23e7afcd6d *man/hfmock.Rd
+4f08973e429af07983312e336531db07 *man/plot.CompoML.Rd
+abe2cdb8e34e1f093fa82cbe8a0ade23 *man/print.CompoML.Rd
+213cfff9ca138a961cb21557a1e29367 *vignettes/PM_reg.Rmd
